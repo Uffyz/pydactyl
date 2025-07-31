@@ -84,6 +84,14 @@ class PterodactylClient(object):
                 path=cookie.get('path', '/')
             )
 
+    def set_user_agent(self, user_agent: str):
+        """
+        Установить User-Agent для сессии
+        """
+        self._session.headers.update({
+            "User-Agent": user_agent
+        })
+
     @property
     def client(self):
         self._client = ClientAPI(self._url, self._api_key, self._session)
