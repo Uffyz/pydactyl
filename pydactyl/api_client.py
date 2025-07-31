@@ -72,6 +72,18 @@ class PterodactylClient(object):
         self._servers = None
         self._user = None
 
+    def set_cookies(self, cookies: list[dict]):
+        """
+        Установить куки в сессию
+        """
+        for cookie in cookies:
+            self._session.cookies.set(
+                name=cookie['name'],
+                value=cookie['value'],
+                domain=cookie.get('domain'),
+                path=cookie.get('path', '/')
+            )
+
     @property
     def client(self):
         self._client = ClientAPI(self._url, self._api_key, self._session)
